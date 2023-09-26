@@ -26,6 +26,7 @@ df = pd.DataFrame(data, columns=data[0])
 total_count = 0
 successful_count = 0
 error_count = 0
+skipped_count = 0
 
 drive_link_column = 12
 name_column = df.iloc[:, 3]
@@ -44,6 +45,7 @@ for index, row in df.iterrows():
         file_id = file_url.split('=')[-1]
 
         if file_id in downloaded_ids:
+            skipped_count += 1
             print(f"Skipped already downloaded file: {file_url}")
             continue
 
@@ -71,3 +73,4 @@ with open('downloaded_ids.json', 'w') as file:
 print(f"Total files: {total_count}")
 print(f"Successfully downloaded files: {successful_count}")
 print(f"Failed downloads: {error_count}")
+print(f"Skipped downloads: {skipped_count}")
