@@ -1,4 +1,4 @@
 .env
 /COR
 *.json
-/.venv
+/venv
